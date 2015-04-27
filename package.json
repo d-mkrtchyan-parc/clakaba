@@ -1,0 +1,25 @@
+{
+  "name": "clakaba",
+  "version": "0.0.0",
+  "description": "Imageboard engine on Clojure",
+  "main": "README.md",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "lein test full"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-mkrtchyan-parc/clakaba.git"
+  },
+  "keywords": [
+    "clakaba"
+  ],
+  "author": "Eik Zeffirsky <wombtromb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d-mkrtchyan-parc/clakaba/issues"
+  },
+  "homepage": "https://github.com/d-mkrtchyan-parc/clakaba"
+}
