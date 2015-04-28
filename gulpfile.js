@@ -12,7 +12,7 @@ task('less', function () {
 		gulp
 			.src("src/less/main.less")
 			.pipe(less())
-			.pipe(gulp.dest("resources/css/"));
+			.pipe(gulp.dest("resources/public/css/"));
 	}catch(err){
 		console.log(err);
 	}

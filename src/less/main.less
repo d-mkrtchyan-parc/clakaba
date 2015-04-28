@@ -1,4 +1,10 @@
+@import "variables.less";
+
+
 @footer-height: 100px;
+
+
+@import "blocks/b-boards-list.less";
 
 body {
     color: #555;
@@ -17,7 +23,7 @@ html, body {
 
 .g-wrapper {
   min-height: 100%;
-  margin-bottom: @footer-height;
+  margin-bottom: -@footer-height;
 }
 
 .g-wrapper:after {
@@ -30,5 +36,5 @@ footer, .g-wrapper:after {
 }
 
 footer {
-  background: orange;
+  background: @main-color;
 }

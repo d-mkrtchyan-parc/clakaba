@@ -1,6 +1,7 @@
+;; неймспейс для обработки входящих HTTP запросов 
 (ns clakaba.handler
   (:require [compojure.core :refer [defroutes routes]]
-						[compojure.handler :as handler]
+            [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.file-info :refer [wrap-file-info]]

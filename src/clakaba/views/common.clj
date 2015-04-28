@@ -13,4 +13,8 @@
       ]))
 
 
-(def footer (html [:footer "Footer"]))
+(def footer (html 
+  [:footer 
+    [:div.container
+      [:div.row 
+        [:div.col-md-12.center "Footer"]]]]))

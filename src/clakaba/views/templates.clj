@@ -3,7 +3,7 @@
 	(:require 
 		[hiccup.page :refer [html5 include-css include-js]]
     [hiccup.core :refer [html]]
-    [clakaba.views.boards :as boards]
+    [clakaba.views.boards.main :as boards]
     [clakaba.dsl.database :as DB]
 		[clakaba.views.layout :as layout]))
 
@@ -43,9 +43,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Шаблоны списка досок
 (def ^{:private true} boards-index-page (layout/one-column {:block false}))
+(def ^{:private true} board-column (layout/one-column {:block true :bid "g-board"}))
 
-(def boards (html5  (layout/page (boards-index-page 
+(def boards (layout/page (boards-index-page 
   (html
     [:div.b-boards--description
       [:p "The list of boards"]]
-    [:div.b-boards--list boards/boards-list])))))
+    [:div.b-boards-list--full boards/boards-list]))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Шаблоны доски
+(defn board[id]
+    (layout/page (html
+      (boards-index-page [:div.b-boards-list--top boards/boards-list])
+      ((layout/one-column {:block false}) [:h1 (boards/get-board-title id)])
+      (board-column (boards/get-board-content id)))))
