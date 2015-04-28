@@ -8,6 +8,10 @@
     [clakaba.dsl.database :as DB]
 		[clakaba.views.layout :as layout]))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Лейауты
+(def ^{:private true} column (layout/one-column {:block false}))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Шаблоны главной страницы
 
@@ -40,10 +44,24 @@
 
     (html5 (layout/page index-page-content))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Шаблоны формы авторизации
+(def ^{:private true} auth-layout (layout/one-column {:block true :bid "g-auth"}))
+(def auth-form (layout/page 
+  (html
+    (column common/header)
+    (auth-layout [:div.b-form.b-form--auth 
+      [:form {:action "login" :type "POST" :id "auth"}
+        [:div.b-input
+          [:input {:type "text" :placeholder "User" :name "u_name"} ]]
+        [:div.b-input
+          [:input {:type "password" :placeholder "Password" :name "u_password"}]]
+        [:div.b-input
+          [:button.btn.b-button--primary "Submit"]]]]))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Шаблоны списка досок
-(def ^{:private true} column (layout/one-column {:block false}))
 (def ^{:private true} board-column (layout/one-column {:block true :bid "g-board"}))
 (def ^{:private true} thread-column (layout/one-column {:block true :bid "g-thread"}))
 (def ^{:private true} board-header 

@@ -87,6 +87,17 @@
   background: #eeeeee;
   margin-bottom: 10px;
 }
+.b-post .b-post-meta {
+  padding: 2px 0;
+  border-bottom: solid 1px #8c6882;
+  margin-bottom: 5px;
+}
+.b-post .b-post-title {
+  margin-right: 10px;
+}
+.b-post .b-post-id {
+  float: right;
+}
 .b-post .b-post--image {
   margin: 0 15px 10px 0;
   display: inline-block;
@@ -99,6 +110,29 @@
 }
 .b-thread-op_post .b-post {
   background: inherit;
+}
+.b-form .b-input {
+  margin-bottom: 10px;
+}
+.b-form .b-input input {
+  height: 28px;
+  border: solid 1px #6e0813;
+  background: #eeeeee;
+  padding: 2px 3px;
+  font-size: 16px;
+}
+.b-button--primary:hover,
+.b-button--primary:active {
+  color: white;
+  box-shadow: 1px 1px 3px #b8b3d0;
+}
+.b-button--primary {
+  background: #6e6888;
+  color: white;
+}
+#g-auth {
+  padding-top: 200px;
+  text-align: center;
 }
 body {
   color: #555;

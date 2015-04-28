@@ -2,11 +2,11 @@
 
 (ns clakaba.routes.home
   (:require [compojure.core :refer :all]
-    [clakaba.views.layout :as layout]
-    [clakaba.views.templates :refer [index boards board thread]]))
+    [clakaba.views.templates :as tpl]))
 
 (defroutes home-static
-  (GET "/" [] (index nil)) ; путь до глагне
-  (GET "/boards" [] boards) ;путь до списка досок (статичная страница)
-  (GET "/boards/:id" {{id :id} :params} (board id))
-  (GET "/thread/:id" {{id :id} :params} (thread id)))
+  (GET "/" [] (tpl/index nil)) ; путь до глагне
+  (GET "/login" [] tpl/auth-form)
+  (GET "/boards" [] tpl/boards) ;путь до списка досок (статичная страница)
+  (GET "/boards/:id" {{id :id} :params} (tpl/board id))
+  (GET "/thread/:id" {{id :id} :params} (tpl/thread id)))

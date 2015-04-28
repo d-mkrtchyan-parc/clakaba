@@ -5,6 +5,7 @@
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
+                 [com.novemberain/monger "2.0.1"]
                  [enfocus "2.1.1"]
                  [org.clojure/clojurescript "0.0-2505"]
 								 [cljs-ajax "0.3.11"]

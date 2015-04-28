@@ -9,8 +9,7 @@
       (include-css "/css/screen.css")
       (include-css "/css/bootstrap.css")
       (include-css "/css/main.css")
-      ;(include-js "/js/main.js")
-      ]))
+      (include-js "/js/main.js")]))
 
 
 (def footer (html 

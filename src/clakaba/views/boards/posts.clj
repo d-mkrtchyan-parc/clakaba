@@ -10,9 +10,11 @@
  (let [{:keys [id domain title email hashnum content image]} post]
     [:div.b-post {:id id}
       [:div.b-post-meta
-        [:div.b-post-title title]
-        [:div.b-post-email email]
-        [:span.b-post-id (str ">>" id)]
+        (if title [:span.b-post-title title])
+        [:span.b-post-email email]
+        [:span.b-post-id 
+          [:a {:href (str "#" id)} (str ">>" id)]
+        ]
       ]
       [:div.b-post-content
         (if image 
@@ -21,3 +23,6 @@
         [:div.b-post-text (html content)]
       ]
     ]))
+
+(def ^{:private true} etc-block 
+  (html [:div.b-post]))
