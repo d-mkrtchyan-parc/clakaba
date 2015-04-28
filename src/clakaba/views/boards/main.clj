@@ -33,5 +33,5 @@
     (draw-board threads true)))
 
 (defn get-thread-content[id]
-  (let [threads (nth (DB/get-threads id) (parse-int id))]
-    (draw-board threads false)))
+  (let [thread [(nth (DB/get-threads id) (parse-int id))]]
+    (draw-board thread false)))

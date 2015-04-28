@@ -1,14 +1,14 @@
-(ns todo.test.handler
+(ns clakaba.test.handler
   (:use clojure.test
         ring.mock.request
-        todo.handler))
+        clakaba.handler))
 
 (deftest test-app
-  (testing "main route"
+  (testing "Main Route"
     (let [response (app (request :get "/"))]
       (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
+      (is (= (:body response) "Hi dude!"))))
 
-  (testing "not-found route"
+  (testing "404 Route"
     (let [response (app (request :get "/invalid"))]
       (is (= (:status response) 404)))))
