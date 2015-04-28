@@ -47,17 +47,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Шаблоны формы авторизации
 (def ^{:private true} auth-layout (layout/one-column {:block true :bid "g-auth"}))
-(def auth-form (layout/page 
+(defn auth-form[error] (layout/page 
   (html
     (column common/header)
     (auth-layout [:div.b-form.b-form--auth 
-      [:form {:action "login" :type "POST" :id "auth"}
+      
+      [:form {:action "login" :method "post" :id "auth"}
         [:div.b-input
           [:input {:type "text" :placeholder "User" :name "u_name"} ]]
         [:div.b-input
           [:input {:type "password" :placeholder "Password" :name "u_password"}]]
         [:div.b-input
-          [:button.btn.b-button--primary "Submit"]]]]))))
+          [:button.btn.b-button--primary "Submit"]]] 
+      (if error [:div.b-error (str "Error: " error)])]))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

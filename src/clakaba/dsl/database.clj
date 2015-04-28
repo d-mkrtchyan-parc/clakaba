@@ -12,6 +12,7 @@
 		{:url "mu" :name "Music"}
 		{:url "s" :name "Software"}
 		{:url "dev" :name "Development"}
+    {:url "vg" :name "Video Games"}
 		{:url "b" :name "Random"} ]))
 
 (def posts (vec [
