@@ -4,9 +4,11 @@
   (:require 
     [hiccup.page :refer [html5 include-css include-js]]
     [hiccup.core :refer [html]]
+    [clakaba.utils.types :refer [parse-int]]
     [clakaba.dsl.database :as DB]
     [clakaba.views.boards.board :refer [draw-board]]
     [clakaba.views.layout :as layout]))
+
 
 
 (defn ^{:private true}menu [url]
@@ -29,3 +31,7 @@
 (defn get-board-content[id]
   (let [threads (DB/get-threads id)]
     (draw-board threads true)))
+
+(defn get-thread-content[id]
+  (let [threads (nth (DB/get-threads id) (parse-int id))]
+    (draw-board threads false)))

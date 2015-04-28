@@ -15,7 +15,9 @@
         [:span.b-post-id (str ">>" id)]
       ]
       [:div.b-post-content
-        [:img {:src (:src image) :href (:src image) :alt (:alt image)}]
+        (if image 
+          [:div.b-post--image {:style (str "width: " (:width image) "; height:" (:height image) ";")}
+            [:img {:src (:src image) :href (:src image) :alt (:alt image) :width (:width image) :height (:height image)}]]        )
         [:div.b-post-text (html content)]
       ]
     ]))

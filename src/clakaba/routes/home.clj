@@ -3,9 +3,10 @@
 (ns clakaba.routes.home
   (:require [compojure.core :refer :all]
     [clakaba.views.layout :as layout]
-    [clakaba.views.templates :refer [index boards board]]))
+    [clakaba.views.templates :refer [index boards board thread]]))
 
 (defroutes home-static
   (GET "/" [] (index nil)) ; путь до глагне
   (GET "/boards" [] boards) ;путь до списка досок (статичная страница)
-  (GET "/boards/:id" {{id :id} :params} (board id)))
+  (GET "/boards/:id" {{id :id} :params} (board id))
+  (GET "/thread/:id" {{id :id} :params} (thread id)))

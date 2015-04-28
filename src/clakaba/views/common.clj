@@ -18,3 +18,5 @@
     [:div.container
       [:div.row 
         [:div.col-md-12.center "Footer"]]]]))
+
+(def header (html [:header [:h1 [:a {:href "/"} "Clakaba"]]]))

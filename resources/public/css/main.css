@@ -1,3 +1,16 @@
+.g-hidden {
+  display: none;
+}
+.b-icon {
+  position: relative;
+  display: inline-block;
+}
+.b-icon--boards_list {
+  width: 30px;
+  height: 30px;
+  background: #6e6888;
+  cursor: pointer;
+}
 .b-boards-list--top {
   margin: 10px 0;
 }
@@ -31,6 +44,61 @@
 }
 .b-boards-menu a {
   text-decoration: none;
+}
+.b-boards-list--mobile li {
+  display: inline-block;
+}
+.b-boards-list--mobile ul {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transition: 100ms;
+}
+.b-thread-op_post {
+  background: #b8b3d0;
+  padding: 10px;
+}
+.b-thread-op_hr {
+  margin: 5px 0;
+  border-width: 2px;
+  border-color: #8c6882;
+}
+.b-thread-hr {
+  margin: 15px 0;
+  border-width: 3px;
+  border-color: #291d61;
+}
+.b-thread-hr:last-child {
+  display: none;
+}
+.b-thread--truncated:last-child {
+  margin-bottom: 20px;
+}
+.b-thread--link {
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.b-thread--link a {
+  font-size: 18px;
+  color: #291d61;
+}
+.b-post {
+  padding: 10px;
+  background: #eeeeee;
+  margin-bottom: 10px;
+}
+.b-post .b-post--image {
+  margin: 0 15px 10px 0;
+  display: inline-block;
+  max-width: 200px;
+  min-height: 200px;
+  height: 200px;
+}
+.b-thread .b-post:last-child {
+  margin-bottom: 0px;
+}
+.b-thread-op_post .b-post {
+  background: inherit;
 }
 body {
   color: #555;
