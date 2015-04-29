@@ -4,3 +4,8 @@
 	:user "cl-user"
   :password "admin"
 	})
+
+(def admin-conf {
+  :user "admin"
+  :password "admin"
+  })

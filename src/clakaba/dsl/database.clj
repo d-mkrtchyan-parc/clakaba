@@ -24,6 +24,8 @@
 
 (defn get-threads[id]
 	(vec [
-		{:id 1 :domain id :posts posts}
-		{:id 2 :domain id :posts posts}
+		{:id 1 :domain "b" :posts posts}
+		{:id 2 :domain "mu" :posts posts}
+    {:id 3 :domain "mu" :posts posts}
+    {:id 4 :domain "vg" :posts posts}
 	]))

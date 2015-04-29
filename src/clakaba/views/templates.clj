@@ -3,6 +3,7 @@
 	(:require 
 		[hiccup.page :refer [html5 include-css include-js]]
     [hiccup.core :refer [html]]
+    [clakaba.utils.types :refer [parse-int]]
     [clakaba.views.boards.main :as boards]
     [clakaba.views.common :as common]
     [clakaba.dsl.database :as DB]
@@ -66,12 +67,18 @@
 ;;;; Шаблоны списка досок
 (def ^{:private true} board-column (layout/one-column {:block true :bid "g-board"}))
 (def ^{:private true} thread-column (layout/one-column {:block true :bid "g-thread"}))
-(def ^{:private true} board-header 
-  (column (html 
-    [:div.b-boards-list--top.hidden-sm.hidden-xs boards/boards-list]
-    [:div.b-boards-list--mobile.hidden-lg.hidden-md 
-      [:i.b-icon.b-icon--boards_list {:js "publish:menu:show"}]
-      [:div.g-hidden boards/boards-list]])))
+(defn ^{:private true} board-header [bid thread]
+  (html 
+    (column (html 
+      [:div.b-boards-list--top.hidden-sm.hidden-xs boards/boards-list]
+      [:div.b-boards-list--mobile.hidden-lg.hidden-md 
+        [:i.b-icon.b-icon--boards_list {:js "publish:menu:show"}]
+        [:div.g-hidden boards/boards-list]]))
+    (column [:div.b-board-meta 
+      [:ul 
+        [:li [:a {:href (str "/new?from=" bid)} "New thread"]]
+        (if thread [:li [:a {:href "javascript: void 0;" :js "publish:fave:"} "Add to favorite"]])
+      ]])))
 
 
 (def boards (layout/page 
@@ -85,12 +92,39 @@
 (defn board[id]
     (layout/page (html
       common/header
-      board-header
+      (board-header id nil)
       (column [:h1 (boards/get-board-title id)])
       (board-column (boards/get-board-content id)))))
 
 (defn thread[id]
   (layout/page (html
     common/header
-    board-header
+    (board-header id true)
     (thread-column (boards/get-thread-content id)))))
+
+(defn gui[] "Test")
+
+(def ^{:private true} new-thread-layout (layout/one-column {:block true :bid "g-new-thread"}))
+(defn new-thread[from error]
+  (let [board (:domain (nth (DB/get-threads nil) (dec (parse-int from))))]
+    (layout/page
+      (html 
+        (column common/header)
+        (new-thread-layout [:div.b-form.b-form--new-thread
+          [:form {:action "post" :method "post" :id "new-thread"}
+            [:div.b-input
+              [:input {:type "text" :placeholder "Title" :name "title"} ]]
+            [:div.b-input
+              [:input {:type "password" :placeholder "Password" :name "delete_pwd"}]]
+            [:div.b-input
+              [:textarea {:type "text" :placeholder "Text" :name "text"}]]
+            [:div.b-input
+              [:input {:type "file" :placeholder "File" :name "file"} "Attachment"]]
+            [:div.b-input
+              [:button.btn.b-button--primary "Submit"]]] 
+          (if error [:div.b-error (str "Error: " error)])
+        ])
+      )
+    )
+  )
+)

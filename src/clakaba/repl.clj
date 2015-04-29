@@ -11,7 +11,7 @@
     (wrap-file-info)))
 
 (defn start-server [& [port]]
-  (let [port (if port (Integer/parseInt port) 1991)]
+  (let [port (if port (Integer/parseInt port) 3000)]
     (reset! server
             (serve (get-handler)
                    {:port port
