@@ -7,7 +7,11 @@
     [clakaba.views.boards.main :as boards]
     [clakaba.views.common :as common]
     [clakaba.dsl.database :as DB]
-		[clakaba.views.layout :as layout]))
+		[clakaba.views.layout :as layout]
+    
+    [cemerick.friend :as friend]
+    (cemerick.friend  [workflows :as workflows]
+                      [credentials :as creds])))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Лейауты
@@ -45,22 +49,34 @@
 
     (html5 (layout/page index-page-content))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Шаблоны формы авторизации
 (def ^{:private true} auth-layout (layout/one-column {:block true :bid "g-auth"}))
-(defn auth-form[error] (layout/page 
+(defn auth-form[req] (layout/page 
   (html
     (column common/header)
-    (auth-layout [:div.b-form.b-form--auth 
-      
-      [:form {:action "login" :method "post" :id "auth"}
-        [:div.b-input
-          [:input {:type "text" :placeholder "User" :name "u_name"} ]]
-        [:div.b-input
-          [:input {:type "password" :placeholder "Password" :name "u_password"}]]
-        [:div.b-input
-          [:button.btn.b-button--primary "Submit"]]] 
-      (if error [:div.b-error (str "Error: " error)])]))))
+    (if-let [ identity (friend/identity req) ]
+      ; IF ALREADY LOGGED IN
+      (auth-layout 
+        (html 
+          [:div (str "You're already looged in as" (-> identity friend/current-authentication :roles)) ]
+          [:div [:button.btn.b-button--danger "Logout"]] ))
+
+      ; IF LOGGED OUT
+      (auth-layout [:div.b-form.b-form--auth 
+        [:form {:action "login" :method "post" :id "auth"}
+          [:div.b-input
+            [:input {:type "text" :placeholder "User" :name "username"} ]]
+          [:div.b-input
+            [:input {:type "password" :placeholder "Password" :name "password"}]]
+          [:div.b-input
+            [:button.btn.b-button--primary "Submit"]]] 
+        (if req [:div.b-error (str "Error: " req)])])))))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

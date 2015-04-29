@@ -19,3 +19,8 @@
         [:div.col-md-12.center "Footer"]]]]))
 
 (def header (html [:header [:h1 [:a {:href "/"} "Clakaba"]]]))
+
+(defn auth-error[params]
+  (let [error (:login_failed params)]
+    (println params)
+    (if (= error "Y") "Invalud user or password. Gtfo please!" "Unknown error")))
